@@ -55,6 +55,17 @@ desc_stats <- df_long %>%
 print(desc_stats)
 View(desc_stats)
 
+##Monthly distribution precipitation in BD
+data$Months <- month(data$Months, label = TRUE)  # Label = TRUE gives month names
+
+# Plot the monthly boxplot
+ggplot(data, aes(x = Months, y = x5)) +
+  geom_boxplot(fill = "lightblue", color = "black") +
+  labs(title = "Monthly Distribution of Precipitation (2000-2022)",
+       x = "Months", y = "Precipitation (mm)") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
 ##Multicollinearity check
 model_linear<-lm(y~x1+x2+x3+x4+x5+x6+x7,data=data)
 
